@@ -5,6 +5,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Input } from '@/components/ui/input'
 import Image from 'next/image'
 import { useChat } from 'ai/react'
+import { ScrollArea } from '@/components/ui/scroll-area'
 
 
 export function Chat() {
@@ -14,7 +15,7 @@ export function Chat() {
 
 
     return (
-        <Card className='w-[440px] h-[700px] grid grid-rows-[min-content_1fr_min-content]'>
+        <Card className='w-[440px]'>
             <CardHeader>
                 <CardTitle>
                     Chat AI
@@ -23,10 +24,11 @@ export function Chat() {
                     Usando Vercel SDK para criar um bot de bate-papo com AI.
                 </CardDescription>
             </CardHeader>
-            <CardContent className='space-y-3'>
-                {messages.map(message => {
+            <CardContent>
+               <ScrollArea  className='h-[600px] pr-4 w-full'>
+               {messages.map(message => {
                     return (
-                        <div key={message.id} className='flex gap-3 text-slate-600 text-sm'>
+                        <div key={message.id} className='flex gap-3 text-slate-600 text-sm mb-4'>
                             {message.role === 'user' && (
                                 <Avatar >
                                     <AvatarFallback>TP</AvatarFallback>
@@ -50,6 +52,8 @@ export function Chat() {
                         </div>
                     )
                 })}
+               </ScrollArea>
+               
 
             </CardContent>
             <CardFooter>
